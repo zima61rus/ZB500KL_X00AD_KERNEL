@@ -587,6 +587,7 @@ endif
 
 # Needed to unbreak GCC 5.x and above
 KBUILD_CFLAGS	+= $(call cc-disable-warning,unused-const-variable,)
+KBUILD_CFLAGS	+= $(call cc-disable-warning,unused-variable,)
 KBUILD_CFLAGS	+= $(call cc-disable-warning,misleading-indentation,)
 KBUILD_CFLAGS	+= $(call cc-disable-warning,duplicate-decl-specifier,)
 KBUILD_CFLAGS	+= $(call cc-disable-warning,memset-elt-size,)
@@ -600,6 +601,7 @@ KBUILD_CFLAGS   += $(call cc-disable-warning,switch-unreachable,)
 KBUILD_CFLAGS   += $(call cc-disable-warning,array-bounds,)
 KBUILD_CFLAGS   += $(call cc-disable-warning,logical-not-parentheses,)
 KBUILD_CFLAGS   += $(call cc-disable-warning,format-overflow,)
+KBUILD_CFLAGS   += $(call cc-disable-warning,unused-result,)
 
 # Needed to unbreak GCC 7.x and above
 KBUILD_CFLAGS   += $(call cc-option,-fno-store-merging,)
