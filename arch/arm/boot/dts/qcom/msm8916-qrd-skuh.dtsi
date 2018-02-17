@@ -199,17 +199,6 @@
 	spi_0 {
 		status = "disabled";
 	};
-	
-	hall { 
-		compatible = "hall-switch";
-		interrupt-parent = <&msm_gpio>;
-		interrupts = <9 0x2003>;
-		vddio-supply = <&pm8916_l6>;
-		linux,gpio-int = <&msm_gpio 9 0x1>;
-		linux,wakeup;
-		linux,min-uv = <1650000>;
-		linux,max-uv = <3300000>; 
-	};
 		
 	gpio-leds {
 		compatible = "gpio-leds";
@@ -287,31 +276,32 @@
 			asoc-codec = <&stub_codec>, <&pm8916_tombak_dig>;
 			asoc-codec-names = "msm-stub-codec.1", "tombak_codec";
 	};
+
 i2c@78b6000 {
 	di@1e {
-			compatible = "di,ap3426";
-			reg = <0x1e>;
-			vdd-supply = <&pm8916_l17>;
-			vio-supply = <&pm8916_l6>;
-			interrupt-parent = <&msm_gpio>;
-			pinctrl-names = "default","sleep";
-			pinctrl-0 = <&ap3426_default>;
-			pinctrl-1 = <&ap3426_sleep>;
-			di,irq-gpio = <&msm_gpio 113 0x2002>;
-			di,als-cal = <94>;
-			di,als-gain = <0>;
-			di,als-persist = <1>;
-			di,ps-gain = <1>;
-			di,ps-persist = <1>;
-			di,ps-led-driver = <3>;
-			di,ps-mean-time = <3>;
-			di,ps-integrated-time = <6>;
-			di,ps-distance-table = <887 500 400 300 200 100>;
-			di,als-sensitivity = <50>;
-			di,wakeup-threshold = <4>;
-			di,ps-thdl = <100>;
-			di,ps-thdh = <250>;
-		};
+		compatible = "di,ap3426";
+		reg = <0x1e>;
+		vdd-supply = <&pm8916_l17>;
+		vio-supply = <&pm8916_l6>;
+		interrupt-parent = <&msm_gpio>;
+		pinctrl-names = "default","sleep";
+		pinctrl-0 = <&ap3426_default>;
+		pinctrl-1 = <&ap3426_sleep>;
+		di,irq-gpio = <&msm_gpio 113 0x2002>;
+		di,als-cal = <94>;
+		di,als-gain = <0>;
+		di,als-persist = <1>;
+		di,ps-gain = <1>;
+		di,ps-persist = <1>;
+		di,ps-led-driver = <3>;
+		di,ps-mean-time = <3>;
+		di,ps-integrated-time = <6>;
+		di,ps-distance-table = <887 500 400 300 200 100>;
+		di,als-sensitivity = <50>;
+		di,wakeup-threshold = <4>;
+		di,ps-thdl = <100>;
+		di,ps-thdh = <250>;
+	};
 	bosch@18 { /* Accelerometer sensor */
 		compatible = "bosch,bma2x2";
 		reg = <0x18>;
@@ -338,13 +328,6 @@ i2c@78b6000 {
 			status = "okay";
 			interrupt-parent = <&msm_gpio>;
 			interrupts = <13 0x2008>;
-					
-			/*
-			pinctrl-names = "pmx_ts_active","pmx_ts_suspend","pmx_ts_release";
-			pinctrl-0 = <&ts_int_active &ts_reset_active>;
-			pinctrl-1 = <&ts_int_suspend &ts_reset_suspend>;
-			pinctrl-2 = <&ts_release>;
-			*/
 			
 			pinctrl-names = "default", "int-output-low", "int-output-high", "int-input";
 			pinctrl-0 = <>;
@@ -352,7 +335,6 @@ i2c@78b6000 {
 			pinctrl-2 = <>;
 			pinctrl-3 = <>;
 
-			
 			vdd_ana-supply = <&pm8916_l17>;
 			vcc_i2c-supply = <&pm8916_l6>;
 			
